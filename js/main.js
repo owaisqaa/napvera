@@ -13,6 +13,64 @@
   }
 })();
 
+// In-page navigation that keeps the address bar clean (www.napvera.com, never /#contact)
+(function () {
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var behavior = reduceMotion ? 'auto' : 'smooth';
+
+  function goTo(target) {
+    target.scrollIntoView({ behavior: behavior, block: 'start' });
+    // move keyboard and screen-reader focus to the section too
+    if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+    target.focus({ preventScroll: true });
+  }
+
+  function clearHash() {
+    if (window.location.hash && window.history && history.replaceState) {
+      history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
+  }
+
+  document.addEventListener('click', function (e) {
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    var link = e.target.closest ? e.target.closest('a[href]') : null;
+    if (!link) return;
+    var href = link.getAttribute('href');
+
+    if (href === '/' || href === '#' || href === '#top') {
+      if (window.location.pathname !== '/') return; // let it load the home page
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: behavior });
+      clearHash();
+      return;
+    }
+    if (href.charAt(0) !== '#') return;
+    var target = document.getElementById(href.slice(1));
+    if (!target) return;
+    e.preventDefault();
+    goTo(target);
+    clearHash();
+  });
+
+  // Old shared links such as napvera.com/#contact still land on the right section,
+  // then the #part is removed from the address bar.
+  function targetFromHash() {
+    var id = window.location.hash.slice(1);
+    try { id = decodeURIComponent(id); } catch (err) { /* keep raw */ }
+    return id ? document.getElementById(id) : null;
+  }
+  if (window.location.hash) {
+    var initial = targetFromHash();
+    clearHash();
+    if (initial) window.addEventListener('load', function () { goTo(initial); }, { once: true });
+  }
+  window.addEventListener('hashchange', function () {
+    var target = targetFromHash();
+    clearHash();
+    if (target) goTo(target);
+  });
+})();
+
 // Contact form
 // To connect a backend, set data-endpoint on <form id="contact-form"> in index.html.
 // Fields are POSTed as FormData: name, company, email, phone, type, message.

@@ -1,6 +1,18 @@
 /* Napvera — site styles
    Palette: navy ink, white, cool mist, one orange accent. */
 
+/* Archivo (variable: weight 100–900, width 62–125%), self-hosted. SIL Open Font License, see assets/fonts/OFL.txt */
+@font-face {
+  font-family: "Archivo";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  src: url("../assets/fonts/archivo-latin-var.woff2") format("woff2-variations"),
+       url("../assets/fonts/archivo-latin-var.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 :root {
   --navy: #14284B;
   --navy-deep: #0E1D38;
@@ -57,6 +69,8 @@ a { color: inherit; }
 .skip-link:focus { top: 12px; }
 
 :focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; border-radius: 2px; }
+/* sections receive focus after in-page navigation; they don't need a ring */
+[tabindex="-1"]:focus { outline: none; }
 
 /* ---------- Buttons ---------- */
 .btn {
@@ -295,6 +309,11 @@ a { color: inherit; }
 .form-status:empty { display: none; }
 .form-status[data-state="success"] { color: #1E6B3A; font-weight: 600; }
 .form-status[data-state="error"] { color: #B3261E; }
+
+/* ---------- 404 ---------- */
+.not-found { padding-block: clamp(72px, 12vw, 160px); }
+.not-found h1 { font-size: clamp(2.25rem, 1.5rem + 3vw, 3.5rem); font-weight: 720; max-width: 16ch; }
+.not-found p { margin: 20px 0 32px; color: var(--slate); font-size: 1.125rem; max-width: 40ch; }
 
 /* ---------- Footer ---------- */
 .site-footer { background: var(--navy-deep); color: #9FB0CA; font-size: .875rem; }

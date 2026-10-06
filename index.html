@@ -3,41 +3,92 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Napvera | Food and beverage import and distribution in Syria</title>
-  <meta name="description" content="Napvera imports and distributes food and beverage products across Syria from Maisat Square, Damascus, backed by more than 30 years of trade in Syria, Türkiye and Europe.">
+  <title>Napvera | Food &amp; Beverage Import and Distribution in Syria</title>
+  <meta name="description" content="Napvera imports and distributes food and beverage products across Syria from Maisat Square, Damascus, backed by 30+ years of trade in Syria, Türkiye and Europe.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://www.napvera.com/">
   <meta name="theme-color" content="#14284B">
+  <meta name="format-detection" content="telephone=no">
+
+  <!-- Social sharing -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Napvera | Food and beverage import and distribution in Syria">
-  <meta property="og:description" content="More than 30 years of food and beverage trade in Syria, Türkiye and Europe, now back home in Damascus.">
-  <meta property="og:image" content="assets/napvera-logo-lockup.svg">
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <meta property="og:site_name" content="Napvera">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://www.napvera.com/">
+  <meta property="og:title" content="Napvera | Food &amp; Beverage Import and Distribution in Syria">
+  <meta property="og:description" content="30+ years of food and beverage trade in Syria, Türkiye and Europe, now back home in Damascus.">
+  <meta property="og:image" content="https://www.napvera.com/assets/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Napvera logo with a map of the route from Nijmegen and Istanbul to Damascus">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Napvera | Food &amp; Beverage Import and Distribution in Syria">
+  <meta name="twitter:description" content="30+ years of food and beverage trade in Syria, Türkiye and Europe, now back home in Damascus.">
+  <meta name="twitter:image" content="https://www.napvera.com/assets/og-image.png">
+  <meta name="twitter:image:alt" content="Napvera logo with a map of the route from Nijmegen and Istanbul to Damascus">
+
+  <!-- Icons -->
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <link rel="preload" href="/assets/fonts/archivo-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/style.css">
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Napvera",
-    "description": "Food and beverage import and distribution in Syria.",
-    "email": "info@napvera.com",
-    "logo": "assets/napvera-logo.svg",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Maisat Square",
-      "addressLocality": "Damascus",
-      "addressCountry": "SY"
-    }
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://www.napvera.com/#organization",
+        "name": "Napvera",
+        "url": "https://www.napvera.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.napvera.com/assets/icon-512.png",
+          "width": 512,
+          "height": 512
+        },
+        "image": "https://www.napvera.com/assets/og-image.png",
+        "description": "Napvera imports and distributes food and beverage products across Syria, backed by more than 30 years of trade in Syria, Türkiye and Europe.",
+        "email": "info@napvera.com",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Maisat Square",
+          "addressLocality": "Damascus",
+          "addressCountry": "SY"
+        },
+        "areaServed": { "@type": "Country", "name": "Syria" },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "sales",
+          "email": "info@napvera.com",
+          "areaServed": "SY",
+          "availableLanguage": ["English", "Arabic"]
+        },
+        "knowsAbout": ["Food import", "Beverage import", "Food distribution", "Private label food products", "Brand representation in Syria"]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.napvera.com/#website",
+        "url": "https://www.napvera.com/",
+        "name": "Napvera",
+        "inLanguage": "en",
+        "publisher": { "@id": "https://www.napvera.com/#organization" }
+      }
+    ]
   }
   </script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <header class="site-header" id="top">
+  <header class="site-header">
     <div class="wrap header-inner">
-      <a class="brand" href="#top" aria-label="Napvera home">
+      <a class="brand" href="/" aria-label="Napvera home">
         <img src="assets/napvera-logo.svg" alt="Napvera" width="160" height="36">
       </a>
       <nav class="site-nav" aria-label="Main">
@@ -301,6 +352,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js" defer></script>
+  <script src="/js/main.js" defer></script>
 </body>
 </html>

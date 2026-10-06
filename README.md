@@ -4,10 +4,18 @@ Company website for **Napvera**, a food and beverage import and distribution com
 
 A static site: plain HTML, CSS and a few lines of JavaScript. No build step. Open `index.html` in a browser, or host the folder on any static host (GitHub Pages, Netlify, etc.).
 
+Live at https://www.napvera.com (Vercel, deploys automatically from the `main` branch).
+
 ## Structure
 
 ```
-index.html              The page
+index.html              The page (SEO meta, social tags and structured data are in <head>)
+404.html                Page shown for unknown URLs
+robots.txt, sitemap.xml For search engines
+site.webmanifest        App name, colours and icons
+favicon.ico             Browser tab icon (older browsers)
+vercel.json             Clean URLs, security headers, caching
+.vercelignore           Keeps this README off the live site
 css/style.css           Styles (colour tokens at the top)
 js/main.js              Footer year, header border on scroll, contact form
 assets/
@@ -15,6 +23,9 @@ assets/
   napvera-logo-white.svg  Logo, white (for dark backgrounds)
   napvera-logo-lockup.svg Logo with "Import & Distribution" tagline
   favicon.svg             Browser tab icon
+  og-image.png            Preview image when the link is shared (1200x630)
+  apple-touch-icon.png, icon-192.png, icon-512.png   Home-screen icons
+  fonts/                  Archivo font, self-hosted (SIL Open Font License)
   map-base.svg            Background map for the hero
   port-scene.svg          Faint port illustration along the bottom of the hero
   swenap-logo.png         Swenap logo (links to swenap.com)
@@ -38,6 +49,14 @@ Fields sent: `name`, `company`, `email`, `phone`, `type` (Brand or supplier / Wh
 A hidden `website` field is a spam trap: it is never sent, and submissions where a bot filled it are dropped in the browser. Validate and rate-limit on the server too.
 
 Works with form services such as Formspree, Getform or Basin (paste their endpoint URL), or your own API.
+
+**Important:** the site sends a strict Content-Security-Policy (in `vercel.json`). When you connect a backend, add its origin to `connect-src` and `form-action`, for example `connect-src 'self' https://your-endpoint.example.com; form-action 'self' mailto: https://your-endpoint.example.com`. Otherwise the browser will block the request.
+
+## Updating SEO
+
+- When content changes, update `<lastmod>` in `sitemap.xml`.
+- The canonical address is `https://www.napvera.com/` (napvera.com redirects there).
+- To change the share preview, replace `assets/og-image.png` (keep 1200x630).
 
 ## To update
 
