@@ -9,15 +9,35 @@ A static site: plain HTML, CSS and a few lines of JavaScript. No build step. Ope
 ```
 index.html              The page
 css/style.css           Styles (colour tokens at the top)
-js/main.js              Footer year + header border on scroll
+js/main.js              Footer year, header border on scroll, contact form
 assets/
   napvera-logo.svg        Logo, navy (for light backgrounds)
   napvera-logo-white.svg  Logo, white (for dark backgrounds)
   napvera-logo-lockup.svg Logo with "Import & Distribution" tagline
   favicon.svg             Browser tab icon
   map-base.svg            Background map for the hero
+  port-scene.svg          Faint port illustration along the bottom of the hero
   swenap-logo.png         Swenap logo (links to swenap.com)
 ```
+
+## Contact form
+
+The form in the Contact section is ready for a backend. Until one is connected, pressing **Send message** opens the visitor's email app with the message filled in, addressed to info@napvera.com.
+
+To connect a backend, edit the `<form id="contact-form">` tag in `index.html`:
+
+```html
+<form class="contact-form" id="contact-form"
+      action="https://your-endpoint.example.com/contact" method="post"
+      data-endpoint="https://your-endpoint.example.com/contact" novalidate>
+```
+
+(also remove `enctype="text/plain"`). `js/main.js` then sends a `POST` with `FormData` and an `Accept: application/json` header. Any 2xx response shows "Message sent"; anything else shows an error and asks the visitor to email instead.
+
+Fields sent: `name`, `company`, `email`, `phone`, `type` (Brand or supplier / Wholesaler or retailer / Other), `message`.
+A hidden `website` field is a spam trap: it is never sent, and submissions where a bot filled it are dropped in the browser. Validate and rate-limit on the server too.
+
+Works with form services such as Formspree, Getform or Basin (paste their endpoint URL), or your own API.
 
 ## To update
 

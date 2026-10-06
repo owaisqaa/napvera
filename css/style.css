@@ -14,7 +14,6 @@
   --white: #FFFFFF;
 
   --font: "Archivo", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-ar: "IBM Plex Sans Arabic", "Segoe UI", Tahoma, sans-serif;
 
   --wrap: 1200px;
   --gutter: clamp(16px, 4vw, 32px);
@@ -88,8 +87,15 @@ a { color: inherit; }
 .site-nav a:not(.btn):hover { border-bottom-color: var(--orange); }
 
 /* ---------- Hero ---------- */
-.hero { padding-block: clamp(40px, 6vw, 80px) clamp(64px, 8vw, 104px); }
-.hero-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
+.hero { position: relative; overflow: hidden; padding-block: clamp(40px, 6vw, 80px) clamp(150px, 17vw, 250px); }
+/* faint port scene along the bottom edge of the hero */
+.hero-scene {
+  position: absolute; left: 0; bottom: 0; z-index: 0;
+  width: 100%; height: clamp(120px, 15vw, 220px); max-width: none;
+  object-fit: cover; object-position: center bottom;
+  pointer-events: none; user-select: none;
+}
+.hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
 
 .hero h1 {
   font-size: clamp(2.375rem, 1.5rem + 3vw, 3.75rem);
@@ -122,6 +128,8 @@ a { color: inherit; }
   stroke-dasharray: 1; stroke-dashoffset: 1;
   animation: draw-route 1.8s cubic-bezier(.6, .1, .3, 1) .5s forwards;
 }
+.map-ship path { fill: none; stroke: #B4C0D2; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.map-ship path:first-child { fill: var(--white); }
 .pin { fill: var(--white); stroke: var(--navy); stroke-width: 3; }
 .pin-home { fill: var(--orange); stroke: var(--white); stroke-width: 3.5; }
 .pin-pulse {
@@ -188,6 +196,11 @@ a { color: inherit; }
 
 .service-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px 48px; align-content: start; }
 .service { padding-top: 22px; border-top: 2px solid var(--navy); }
+.service-icon {
+  display: block; width: 48px; height: 48px; margin-bottom: 18px;
+  fill: none; stroke: var(--navy); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+}
+.service-icon .accent { stroke: var(--orange); }
 .service h3 { font-size: 1.375rem; font-weight: 700; }
 .service p { margin-top: 12px; color: var(--slate); }
 
@@ -212,25 +225,76 @@ a { color: inherit; }
 
 /* ---------- Contact ---------- */
 .contact { background: var(--navy); color: var(--white); padding-block: var(--section); }
-.contact-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: clamp(40px, 6vw, 96px); }
+.contact-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: clamp(40px, 6vw, 96px); align-items: start; }
 .contact h2 { color: var(--white); }
 .contact-main > p { margin-top: 18px; color: var(--on-navy); font-size: 1.125rem; max-width: 36ch; }
 .email {
-  display: inline-block; margin-top: 36px;
-  font-size: clamp(1.625rem, 1rem + 2.8vw, 3rem); font-weight: 700; font-stretch: 112%;
+  display: inline-block; margin-top: 32px;
+  font-size: clamp(1.625rem, 1rem + 2.2vw, 2.5rem); font-weight: 700; font-stretch: 112%;
   color: var(--white); text-decoration: underline; text-decoration-color: var(--orange);
-  text-decoration-thickness: 3px; text-underline-offset: 10px;
+  text-decoration-thickness: 3px; text-underline-offset: 9px;
   overflow-wrap: anywhere; transition: color .2s ease;
 }
 .email:hover { color: var(--orange); }
-.contact-side { display: grid; gap: 0; align-content: start; }
-.contact-side h3 { color: var(--white); font-size: 1.0625rem; font-stretch: 108%; font-weight: 700; }
-.contact-side p { margin-top: 6px; color: var(--on-navy); font-size: 1rem; }
-.audience, .address { padding-block: 20px; border-top: 1px solid rgba(255, 255, 255, .18); }
-.address address { font-style: normal; }
-.address-ar { font-family: var(--font-ar); font-size: 1.0625rem; text-align: left; }
-.address a { display: inline-block; margin-top: 12px; color: var(--white); font-weight: 600; text-decoration-color: var(--orange); text-decoration-thickness: 2px; text-underline-offset: 4px; }
-.address a:hover { color: var(--orange); }
+.address { margin-top: 44px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, .18); max-width: 24rem; }
+.address h3 { color: var(--white); font-size: 1.0625rem; font-stretch: 108%; font-weight: 700; }
+.address address { margin-top: 6px; font-style: normal; color: var(--on-navy); }
+
+/* Contact form */
+.contact-form {
+  background: var(--white); color: var(--ink);
+  border-radius: 10px; padding: clamp(24px, 3vw, 36px);
+  box-shadow: 0 24px 48px -24px rgba(5, 12, 28, .5);
+}
+.form-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 4px; }
+.form-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 16px; }
+.field { margin-top: 18px; min-width: 0; }
+.field > label, .choice legend { display: block; margin-bottom: 6px; font-size: .9375rem; font-weight: 600; color: var(--navy); }
+.optional { font-weight: 400; color: var(--slate); }
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form input[type="tel"],
+.contact-form textarea {
+  display: block; width: 100%; min-height: 48px; padding: 11px 14px;
+  font: inherit; font-size: 1rem; line-height: 1.4; color: var(--ink);
+  background: var(--white); border: 1px solid #7F8CA3; border-radius: 4px;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+.contact-form textarea { min-height: 120px; resize: vertical; }
+.contact-form input:focus, .contact-form textarea:focus {
+  outline: none; border-color: var(--navy); box-shadow: 0 0 0 3px rgba(238, 122, 34, .45);
+}
+.choice { border: 0; padding: 0; margin-inline: 0; }
+.choice legend { padding: 0; }
+.choice-options { display: flex; flex-wrap: wrap; gap: 8px; }
+.choice-options label {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 14px;
+  border: 1px solid var(--line); border-radius: 999px; cursor: pointer;
+  font-size: .9375rem; color: var(--ink); transition: border-color .15s ease, background-color .15s ease;
+}
+.choice-options input { accent-color: var(--navy); width: 16px; height: 16px; margin: 0; }
+.choice-options label:hover { border-color: #7F8CA3; }
+.choice-options label:has(input:checked) { border-color: var(--navy); background: var(--mist); }
+.choice-options label:has(input:focus-visible) { outline: 3px solid var(--orange); outline-offset: 2px; }
+
+/* errors appear only after the visitor has interacted, or after a submit attempt */
+.field-error { display: none; margin-top: 6px; font-size: .875rem; color: #B3261E; }
+.field-error::before { content: "!"; display: inline-grid; place-items: center; width: 16px; height: 16px; margin-right: 6px; border-radius: 50%; background: #B3261E; color: var(--white); font-size: .6875rem; font-weight: 700; vertical-align: 1px; }
+.contact-form :is(input, textarea):user-invalid,
+.contact-form.was-submitted :is(input, textarea):invalid { border-color: #B3261E; box-shadow: inset 0 0 0 1px #B3261E; }
+.contact-form :is(input, textarea):user-invalid ~ .field-error,
+.contact-form.was-submitted :is(input, textarea):invalid ~ .field-error { display: block; }
+
+.hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+
+.form-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; margin-top: 24px; }
+.btn-accent { background: var(--orange); border-color: var(--orange); color: var(--navy-deep); }
+.btn-accent:hover { background: #D9661A; border-color: #D9661A; color: var(--navy-deep); }
+.btn[disabled] { opacity: .65; cursor: progress; }
+.form-status { flex: 1 1 14rem; font-size: .9375rem; color: var(--slate); }
+.form-status:empty { display: none; }
+.form-status[data-state="success"] { color: #1E6B3A; font-weight: 600; }
+.form-status[data-state="error"] { color: #B3261E; }
 
 /* ---------- Footer ---------- */
 .site-footer { background: var(--navy-deep); color: #9FB0CA; font-size: .875rem; }
@@ -262,6 +326,7 @@ a { color: inherit; }
   .stop:nth-child(3)::before { top: 24px; border-top: 0; border-left: 3px solid var(--orange); left: 8.5px; }
 
   .service-list, .group-grid { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .form-row { grid-template-columns: minmax(0, 1fr); }
   .group-grid { gap: 16px; }
   .company-logo { min-height: 150px; padding: 28px; }
   .company-meta { padding: 18px 20px; }
