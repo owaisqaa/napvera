@@ -66,3 +66,4 @@ Works with form services such as Formspree, Getform or Basin (paste their endpoi
 - **Mumlar logo and link:** in `index.html`, find the comment above the Mumlar tile. Add the logo file to `assets/` and swap the text wordmark for an `<img>`. When the website is ready, change the tile's `<div class="company">` to `<a class="company company-link" href="..." target="_blank" rel="noopener">`.
 - **Contact details:** the email (`info@napvera.com`) and address are in the Contact section of `index.html` and in the JSON-LD block in the `<head>`.
 - **Colours:** edit the variables in `:root` at the top of `css/style.css`.
+- **After changing `css/style.css`:** raise the number in `style.css?v=4` (in `index.html`, `brands.html` and `404.html`) so visitors' browsers load the new styles instead of an old saved copy.
