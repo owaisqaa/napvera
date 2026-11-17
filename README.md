@@ -9,7 +9,8 @@ Live at https://www.napvera.com (Vercel, deploys automatically from the `main` b
 ## Structure
 
 ```
-index.html              The page (SEO meta, social tags and structured data are in <head>)
+index.html              The home page (SEO meta, social tags and structured data are in <head>)
+brands.html             Brands page (www.napvera.com/brands): logo wall of the brands we carry
 404.html                Page shown for unknown URLs
 robots.txt, sitemap.xml For search engines
 site.webmanifest        App name, colours and icons
@@ -19,9 +20,10 @@ vercel.json             Clean URLs, security headers, caching
 css/style.css           Styles (colour tokens at the top)
 js/main.js              Footer year, header border on scroll, contact form
 assets/
-  napvera-logo.svg        Logo, navy (for light backgrounds)
-  napvera-logo-white.svg  Logo, white (for dark backgrounds)
-  napvera-logo-lockup.svg Logo with "Import & Distribution" tagline
+  napvera-logo.png        Logo, navy (for light backgrounds)
+  napvera-logo-white.png  Logo, white (for dark backgrounds)
+  napvera-logo-lockup.png, napvera-logo-lockup-white.png   Logo with "Import & Distribution" tagline
+  brands/                 Brand logos for the Brands page (.webp, about 440px wide)
   favicon.svg             Browser tab icon
   og-image.png            Preview image when the link is shared (1200x630)
   apple-touch-icon.png, icon-192.png, icon-512.png   Home-screen icons
@@ -60,6 +62,7 @@ Works with form services such as Formspree, Getform or Basin (paste their endpoi
 
 ## To update
 
+- **Brands page:** to add a brand, put its logo in `assets/brands/` (transparent or white background, about 440px wide) and copy one `<li class="brand-tile">` in `brands.html`.
 - **Mumlar logo and link:** in `index.html`, find the comment above the Mumlar tile. Add the logo file to `assets/` and swap the text wordmark for an `<img>`. When the website is ready, change the tile's `<div class="company">` to `<a class="company company-link" href="..." target="_blank" rel="noopener">`.
 - **Contact details:** the email (`info@napvera.com`) and address are in the Contact section of `index.html` and in the JSON-LD block in the `<head>`.
 - **Colours:** edit the variables in `:root` at the top of `css/style.css`.
