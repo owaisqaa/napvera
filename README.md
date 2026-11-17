@@ -10,7 +10,7 @@ Live at https://www.napvera.com (Vercel, deploys automatically from the `main` b
 
 ```
 index.html              The home page (SEO meta, social tags and structured data are in <head>)
-brands.html             Brands page (www.napvera.com/brands): logo wall of the brands we carry
+brands.html             Brands page (www.napvera.com/brands): our own brand Levant, then the brands we carry, with origin and history
 404.html                Page shown for unknown URLs
 robots.txt, sitemap.xml For search engines
 site.webmanifest        App name, colours and icons
@@ -62,7 +62,7 @@ Works with form services such as Formspree, Getform or Basin (paste their endpoi
 
 ## To update
 
-- **Brands page:** to add a brand, put its logo in `assets/brands/` (transparent or white background, about 440px wide) and copy one `<li class="brand-tile">` in `brands.html`.
+- **Brands page:** to add a brand, put its logo in `assets/brands/` (transparent or white background, about 440px wide) and copy one `<li class="brand-card">` in `brands.html` (logo, name, origin line, short history). Levant, our own brand, has its own featured box at the top.
 - **Mumlar logo and link:** in `index.html`, find the comment above the Mumlar tile. Add the logo file to `assets/` and swap the text wordmark for an `<img>`. When the website is ready, change the tile's `<div class="company">` to `<a class="company company-link" href="..." target="_blank" rel="noopener">`.
 - **Contact details:** the email (`info@napvera.com`) and address are in the Contact section of `index.html` and in the JSON-LD block in the `<head>`.
 - **Colours:** edit the variables in `:root` at the top of `css/style.css`.
