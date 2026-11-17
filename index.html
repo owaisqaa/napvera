@@ -35,7 +35,7 @@
   <link rel="manifest" href="/site.webmanifest">
 
   <link rel="preload" href="/assets/fonts/archivo-latin-var.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/css/style.css?v=4">
+  <link rel="stylesheet" href="/css/style.css?v=5">
 
   <script type="application/ld+json">
   {
@@ -55,6 +55,7 @@
         "image": "https://www.napvera.com/assets/og-image.png",
         "description": "Napvera imports and distributes food and beverage products across Syria, backed by more than 30 years of trade in Syria, Türkiye and Europe.",
         "email": "info@napvera.com",
+        "telephone": "+963944231885",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "Maisat Square",
@@ -62,13 +63,23 @@
           "addressCountry": "SY"
         },
         "areaServed": { "@type": "Country", "name": "Syria" },
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "contactType": "sales",
-          "email": "info@napvera.com",
-          "areaServed": "SY",
-          "availableLanguage": ["English", "Arabic"]
-        },
+        "contactPoint": [
+          {
+            "@type": "ContactPoint",
+            "contactType": "sales",
+            "email": "info@napvera.com",
+            "telephone": "+963944231885",
+            "areaServed": "SY",
+            "availableLanguage": ["English", "Arabic"]
+          },
+          {
+            "@type": "ContactPoint",
+            "contactType": "sales",
+            "telephone": "+905459057157",
+            "areaServed": "TR",
+            "availableLanguage": ["English", "Arabic"]
+          }
+        ],
         "knowsAbout": ["Food import", "Beverage import", "Food distribution", "Private label food products", "Brand representation in Syria"]
       },
       {
@@ -277,6 +288,13 @@
           <h2 id="contact-title">Work with us</h2>
           <p>Whether you make a product or sell one, we would like to hear from you. Send us a message or write to us directly.</p>
           <a class="email" href="mailto:info@napvera.com">info@napvera.com</a>
+          <div class="address">
+            <h3>Call us</h3>
+            <ul class="phones">
+              <li><span class="phone-cc">TR</span> <a href="tel:+905459057157" dir="ltr">+90 545 905 71 57</a></li>
+              <li><span class="phone-cc">SY</span> <a href="tel:+963944231885" dir="ltr">+963 944 231 885</a></li>
+            </ul>
+          </div>
           <div class="address">
             <h3>Visit us</h3>
             <address>Maisat Square<br>Damascus, Syria</address>
