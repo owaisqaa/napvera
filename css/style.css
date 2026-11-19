@@ -259,6 +259,8 @@ a { color: inherit; }
 .brand-box img { width: auto; height: auto; max-width: 100%; max-height: 100%; object-fit: contain; }
 
 .brand-origin { margin-top: 4px; font-size: .875rem; font-weight: 600; font-stretch: 106%; color: var(--orange-ink); }
+.brand-region { margin-top: 4px; font-size: .8125rem; font-weight: 600; color: var(--slate); }
+.brand-region::before { content: "\2192\00a0"; color: var(--orange-ink); }
 
 .brand-feature {
   display: flex; align-items: center; gap: clamp(24px, 4vw, 48px);
