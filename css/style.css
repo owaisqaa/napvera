@@ -284,12 +284,13 @@ a { color: inherit; }
 }
 /* each brand is a box: logo on the left, name, origin and history on the right */
 .brand-card {
-  display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-rows: auto auto 1fr;
+  display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-rows: auto auto auto 1fr;
   column-gap: 22px; align-content: start;
   padding: 22px; border: 1px solid var(--line); border-radius: 10px; background: var(--white);
   box-shadow: 0 1px 2px rgba(20, 40, 75, .04);
 }
 .brand-card .brand-box { grid-row: 1 / -1; align-self: start; background: var(--mist); border-color: transparent; }
+.brand-card > :not(.brand-box) { grid-column: 2; }
 .brand-card h3 { font-size: 1.125rem; font-weight: 700; }
 .brand-card > p:last-child { margin-top: 8px; color: var(--slate); font-size: .9688rem; line-height: 1.55; }
 
@@ -408,6 +409,7 @@ a { color: inherit; }
   /* narrower screens: logo on top inside each box, still two boxes per row */
   .brand-card { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; }
   .brand-card .brand-box { grid-row: auto; width: 100%; margin-bottom: 14px; }
+  .brand-card > :not(.brand-box) { grid-column: auto; }
 }
 
 @media (max-width: 640px) {
