@@ -1,6 +1,6 @@
 # Napvera website
 
-Company website for **Napvera**, a food and beverage import and distribution company based at Maisat Square, Damascus, Syria.
+Company website for **Napvera**, a food and beverage import and distribution company based at Mhd Ibn Kasem Althakafi St., Building 21, Damascus, Syria.
 
 A static site: plain HTML, CSS and a few lines of JavaScript. No build step. Open `index.html` in a browser, or host the folder on any static host (GitHub Pages, Netlify, etc.).
 
