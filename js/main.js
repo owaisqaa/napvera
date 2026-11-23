@@ -13,6 +13,62 @@
   }
 })();
 
+// Phone menu: a ☰ button that opens the header links in a panel (screens 900px and narrower).
+// Built from the links already in <nav class="site-nav">, so every page gets it automatically.
+(function () {
+  var header = document.querySelector('.site-header');
+  var nav = header && header.querySelector('.site-nav');
+  if (!nav) return;
+
+  var button = document.createElement('button');
+  button.type = 'button';
+  button.className = 'menu-toggle';
+  button.setAttribute('aria-expanded', 'false');
+  button.setAttribute('aria-controls', 'mobile-menu');
+  button.setAttribute('aria-label', 'Open menu');
+  button.innerHTML = '<span></span><span></span><span></span>';
+
+  var panel = document.createElement('nav');
+  panel.className = 'mobile-menu';
+  panel.id = 'mobile-menu';
+  panel.setAttribute('aria-label', 'Menu');
+  panel.hidden = true;
+  Array.prototype.forEach.call(nav.querySelectorAll('a'), function (a) {
+    var link = a.cloneNode(true);
+    if (link.classList.contains('btn')) link.className = 'btn mobile-menu-cta';
+    panel.appendChild(link);
+  });
+
+  nav.parentNode.appendChild(button);
+  header.appendChild(panel);
+
+  function setOpen(open, returnFocus) {
+    panel.hidden = !open;
+    header.classList.toggle('menu-open', open);
+    button.setAttribute('aria-expanded', open ? 'true' : 'false');
+    button.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    if (!open && returnFocus) button.focus();
+  }
+
+  button.addEventListener('click', function () { setOpen(panel.hidden); });
+  // a link was chosen: close first, then the page scrolls or navigates
+  panel.addEventListener('click', function (e) {
+    if (e.target.closest && e.target.closest('a')) setOpen(false);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !panel.hidden) setOpen(false, true);
+  });
+  document.addEventListener('click', function (e) {
+    if (!panel.hidden && !header.contains(e.target)) setOpen(false);
+  });
+  var wide = window.matchMedia && window.matchMedia('(min-width: 901px)');
+  if (wide) {
+    var onWide = function () { if (wide.matches) setOpen(false); };
+    if (wide.addEventListener) wide.addEventListener('change', onWide);
+    else if (wide.addListener) wide.addListener(onWide);
+  }
+})();
+
 // In-page navigation that keeps the address bar clean (www.napvera.com, never /#contact)
 (function () {
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
