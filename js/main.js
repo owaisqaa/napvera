@@ -128,9 +128,9 @@
 })();
 
 // Contact form
-// To connect a backend, set data-endpoint on <form id="contact-form"> in index.html.
-// Fields are POSTed as FormData: name, company, email, phone, type, message.
-// Until an endpoint is set, the form opens the visitor's email app instead.
+// Fields are POSTed as FormData to data-endpoint on <form id="contact-form"> (api/contact.mjs,
+// which emails them through Resend): name, company, email, phone, type, message.
+// If data-endpoint is empty, the form opens the visitor's email app instead.
 (function () {
   var form = document.getElementById('contact-form');
   if (!form) return;
